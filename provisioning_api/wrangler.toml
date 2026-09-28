@@ -45,6 +45,9 @@ id = "YOUR_SUBSCRIPTIONS_KV_ID"
 # DEVELOPMENT ENVIRONMENT
 # =============================================================================
 [env.dev]
+routes = [
+  { pattern = "termopus.api.happyhousekr.kr", custom_domain = true }
+]
 
 [[env.dev.routes]]
 pattern = "YOUR_API_DEV_DOMAIN"

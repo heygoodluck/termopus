@@ -57,6 +57,9 @@ APPLE_APP_ID = "com.termopus.app"
 # DEVELOPMENT ENVIRONMENT
 # =============================================================================
 [env.dev]
+routes = [
+  { pattern = "termopus.relay.happyhousekr.kr", custom_domain = true }
+]
 
 [[env.dev.routes]]
 pattern = "YOUR_RELAY_DEV_DOMAIN"
