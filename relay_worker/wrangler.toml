@@ -8,9 +8,7 @@ compatibility_flags = ["nodejs_compat"]
 # =============================================================================
 
 # Custom domain (no wildcards allowed)
-[[routes]]
-pattern = "YOUR_RELAY_DOMAIN"
-custom_domain = true
+
 
 # Durable Objects for WebSocket sessions
 [durable_objects]
@@ -61,9 +59,7 @@ routes = [
   { pattern = "termopus.relay.happyhousekr.kr", custom_domain = true }
 ]
 
-[[env.dev.routes]]
-pattern = "YOUR_RELAY_DEV_DOMAIN"
-custom_domain = true
+
 
 [env.dev.durable_objects]
 bindings = [

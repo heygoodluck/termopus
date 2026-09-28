@@ -8,9 +8,7 @@ compatibility_flags = ["nodejs_compat"]
 # =============================================================================
 
 # Custom domain (auto-creates DNS)
-[[routes]]
-pattern = "YOUR_API_DOMAIN"
-custom_domain = true
+
 
 [vars]
 APPLE_APP_ID = "com.termopus.app"
@@ -49,9 +47,7 @@ routes = [
   { pattern = "termopus.api.happyhousekr.kr", custom_domain = true }
 ]
 
-[[env.dev.routes]]
-pattern = "YOUR_API_DEV_DOMAIN"
-custom_domain = true
+
 
 [env.dev.vars]
 APPLE_APP_ID = "com.termopus.app"
