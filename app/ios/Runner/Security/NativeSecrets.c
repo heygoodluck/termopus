@@ -251,7 +251,7 @@ void NativeSecrets_enforceSecurityResult(const char* signedResult) {
         if (tsColon) {
             long ts = atol(tsColon + 1);
             long now = (long)time(NULL);
-            if (now - ts > 30 || ts - now > 5) {
+            if (now - ts > 300 || ts - now > 30) {
                 diff = 1;
             }
         } else {

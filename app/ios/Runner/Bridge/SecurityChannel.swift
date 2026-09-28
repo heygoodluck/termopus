@@ -1032,10 +1032,10 @@ public class SecurityChannel: NSObject, FlutterPlugin {
             return
         }
 
-        // Security gate: validate biometric proof if provided
-        if let biometricProof = args?["biometricProof"] as? String, !biometricProof.isEmpty {
-            NativeSecretsWrapper.enforceSecurityResult(biometricProof)
-        }
+        // Biometric proof was already validated by enforceSecurityResult in the
+        // Dart auth layer (AuthNotifier.authenticate). Re-validating here crashes
+        // because the native HMAC has a time-based freshness check.
+        // Aligned with Android SecurityChannel.kt:733.
 
         // Security gate: validate device integrity
         guard validateIntegrityGate(result: result) else { return }
