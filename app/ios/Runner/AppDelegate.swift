@@ -15,6 +15,15 @@ import firebase_messaging
         UNUserNotificationCenter.current().delegate = self
         application.registerForRemoteNotifications()
 
+        // Prompt user for notification authorization on launch
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+            if let error = error {
+                NSLog("[AppDelegate] Notification authorization error: \(error.localizedDescription)")
+            } else {
+                NSLog("[AppDelegate] Notification authorization granted: \(granted)")
+            }
+        }
+
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 
