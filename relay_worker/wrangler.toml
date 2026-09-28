@@ -25,21 +25,21 @@ new_sqlite_classes = ["SessionRelay"]
 # Then paste the ID below
 [[kv_namespaces]]
 binding = "FCM_TOKENS"
-id = "YOUR_FCM_TOKENS_KV_ID"
+id = "75f71e88722c44b9800f0053eb92ca27"
 
 # KV for provisioned device certificates (shared with provisioning API)
 # Run: wrangler kv namespace create PROVISIONED_DEVICES
 # Use the SAME ID as PROVISION_KV in provisioning_api/wrangler.toml
 [[kv_namespaces]]
 binding = "PROVISIONED_DEVICES"
-id = "YOUR_PROVISION_KV_ID"
+id = "c4aa3ba48cf34d8f85c08eaca9df1051"
 
 # Subscription state per device (shared with provisioning API)
 # Run: wrangler kv namespace create SUBSCRIPTIONS
 # Use the SAME ID as SUBSCRIPTIONS in provisioning_api/wrangler.toml
 [[kv_namespaces]]
 binding = "SUBSCRIPTIONS"
-id = "YOUR_SUBSCRIPTIONS_KV_ID"
+id = "21780162f8114b23a130d1fc83c4a972"
 
 [vars]
 # mTLS client certificates: always "on" for OSS (sync removes this line, relay defaults to "on")
@@ -72,16 +72,16 @@ new_sqlite_classes = ["SessionRelay"]
 
 [[env.dev.kv_namespaces]]
 binding = "FCM_TOKENS"
-id = "YOUR_FCM_TOKENS_KV_ID_DEV"
+id = "75f71e88722c44b9800f0053eb92ca27"
 
 [[env.dev.kv_namespaces]]
 binding = "PROVISIONED_DEVICES"
-id = "YOUR_PROVISION_KV_ID_DEV"
+id = "c4aa3ba48cf34d8f85c08eaca9df1051"
 
 # TODO: Replace with real namespace ID after creation
 [[env.dev.kv_namespaces]]
 binding = "SUBSCRIPTIONS"
-id = "YOUR_SUBSCRIPTIONS_KV_ID_DEV"
+id = "21780162f8114b23a130d1fc83c4a972"
 
 [env.dev.vars]
 SUBSCRIPTION_ENFORCEMENT = "off"

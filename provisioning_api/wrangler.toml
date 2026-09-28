@@ -31,13 +31,13 @@ DEVICE_COOLDOWN_SECONDS = "3600"
 
 [[kv_namespaces]]
 binding = "PROVISION_KV"
-id = "YOUR_PROVISION_KV_ID"
+id = "c4aa3ba48cf34d8f85c08eaca9df1051"
 
 # Subscription state per device (created via: wrangler kv:namespace create SUBSCRIPTIONS)
 # TODO: Replace with real namespace ID after creation
 [[kv_namespaces]]
 binding = "SUBSCRIPTIONS"
-id = "YOUR_SUBSCRIPTIONS_KV_ID"
+id = "21780162f8114b23a130d1fc83c4a972"
 
 # =============================================================================
 # DEVELOPMENT ENVIRONMENT
@@ -66,12 +66,12 @@ DEVICE_COOLDOWN_SECONDS = "3600"
 
 [[env.dev.kv_namespaces]]
 binding = "PROVISION_KV"
-id = "YOUR_PROVISION_KV_ID_DEV"
+id = "c4aa3ba48cf34d8f85c08eaca9df1051"
 
 # TODO: Replace with real namespace ID after creation
 [[env.dev.kv_namespaces]]
 binding = "SUBSCRIPTIONS"
-id = "YOUR_SUBSCRIPTIONS_KV_ID_DEV"
+id = "21780162f8114b23a130d1fc83c4a972"
 
 # =============================================================================
 # Secrets (set via `wrangler secret put` for each env)
