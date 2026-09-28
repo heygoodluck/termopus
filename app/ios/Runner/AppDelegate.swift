@@ -5,25 +5,45 @@ import firebase_core
 import firebase_messaging
 
 @main
-@objc class AppDelegate: FlutterAppDelegate {
+@objc class AppDelegate: FlutterAppDelegate, FlutterImplicitEngineDelegate {
 
     override func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
-        // Register all generated Flutter plugins (Firebase, MobileScanner, etc.)
-        GeneratedPluginRegistrant.register(with: self)
-
-        // Register our native SecurityChannel plugin (biometric, crypto, WebSocket, FCM)
-        if let registrar = self.registrar(forPlugin: "SecurityChannel") {
-            SecurityChannel.register(with: registrar)
-        }
-
         // Register for remote notifications (required for FCM on iOS)
         UNUserNotificationCenter.current().delegate = self
         application.registerForRemoteNotifications()
 
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+    }
+
+    func didInitializeImplicitFlutterEngine(_ engineBridge: FlutterImplicitEngineBridge) {
+        // Register all generated Flutter plugins (Firebase, MobileScanner, etc.)
+        GeneratedPluginRegistrant.register(with: engineBridge.pluginRegistry)
+
+        // Register our native SecurityChannel plugin (biometric, crypto, WebSocket, FCM)
+        if let registrar = engineBridge.pluginRegistry.registrar(forPlugin: "SecurityChannel") {
+            SecurityChannel.register(with: registrar)
+        }
+    }
+
+    // MARK: - Helper to find FlutterViewController in UIScene lifecycle
+
+    private func getFlutterViewController() -> FlutterViewController? {
+        if let controller = window?.rootViewController as? FlutterViewController {
+            return controller
+        }
+        for scene in UIApplication.shared.connectedScenes {
+            if let windowScene = scene as? UIWindowScene {
+                for win in windowScene.windows {
+                    if let controller = win.rootViewController as? FlutterViewController {
+                        return controller
+                    }
+                }
+            }
+        }
+        return nil
     }
 
     // MARK: - APNs Token Forwarding
@@ -81,7 +101,7 @@ import firebase_messaging
             showLocalNotification(sessionId: sessionId)
 
             // Notify Flutter side to reconnect
-            if let controller = window?.rootViewController as? FlutterViewController {
+            if let controller = getFlutterViewController() {
                 let channel = FlutterMethodChannel(
                     name: "app.clauderemote/security",
                     binaryMessenger: controller.binaryMessenger
